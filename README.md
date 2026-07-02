@@ -2,7 +2,7 @@
 
 本地运行的 **DataOps + AI Platform**，用于学习数据工程、RAG 与 DevOps。
 
-> 完整架构、分阶段路线、模块设计见 **[项目构想文档](./Mini_Data_AI_Platform_项目构想.md)**。
+> 完整架构、分阶段路线、模块设计见 **[项目设计文档](./docs/design.md)**。
 
 ## 架构（MVP）
 
@@ -22,6 +22,8 @@ mini-data-ai-platform/
 ├── scripts/          # ingest 等运维脚本
 ├── frontend/         # Web UI（占位）
 ├── tests/
+├── docs/
+│   └── design.md     # 项目设计文档
 ├── config.py
 ├── mise.toml         # Python 版本（mise 管理）
 ├── docker-compose.yml   # Qdrant + Ollama
@@ -95,7 +97,7 @@ make test
 | Phase 4 AI 工程 | Agent + Prompt 管理 | 待开始 |
 | Phase 5 CI/CD | GitHub Actions | 待开始 |
 
-详见 [Mini_Data_AI_Platform_项目构想.md](./Mini_Data_AI_Platform_项目构想.md)。
+详见 [docs/design.md](./docs/design.md)。
 
 ## License
 

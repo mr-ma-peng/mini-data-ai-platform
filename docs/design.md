@@ -126,6 +126,8 @@ mini-data-ai-platform/
 │   └── ingest.py
 ├── frontend/            # Web UI（占位）
 ├── tests/
+├── docs/
+│   └── design.md        # 项目设计文档（本文）
 ├── config.py            # 统一配置（pydantic-settings）
 ├── mise.toml            # Python 版本（mise）
 ├── docker-compose.yml   # Qdrant + Ollama
@@ -354,7 +356,7 @@ make test       # 运行 pytest
 | 配置 | 禁止硬编码密钥；统一走 `config.py` + `.env` |
 | 提交 | 小步提交；message 说明「为什么」 |
 | 分支 | `main` 保持稳定；功能用 `feat/xxx` 分支 |
-| 文档 | 构想（本文）= 设计真理；README = 快速上手 |
+| 文档 | `docs/design.md` = 设计真理；`README.md` = 快速上手 |
 
 ---
 
