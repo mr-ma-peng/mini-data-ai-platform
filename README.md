@@ -23,17 +23,30 @@ mini-data-ai-platform/
 ├── frontend/         # Web UI（占位）
 ├── tests/
 ├── config.py
+├── mise.toml         # Python 版本（mise 管理）
 ├── docker-compose.yml   # Qdrant + Ollama
 └── requirements.txt
 ```
 
 ## 快速开始
 
+### 0. 前置条件
+
+- [mise](https://mise.jdx.dev/)（管理 Python 版本）
+- Docker（运行 Qdrant / Ollama）
+
+确保 shell 已激活 mise（写入 `~/.zshrc` 一次即可）：
+
+```bash
+eval "$(mise activate zsh)"
+```
+
 ### 1. 环境准备
 
 ```bash
 cp .env.example .env
-make install
+make install          # 自动安装 Python 3.12 并创建 .venv
+mise exec -- python --version
 ```
 
 ### 2. 启动基础服务

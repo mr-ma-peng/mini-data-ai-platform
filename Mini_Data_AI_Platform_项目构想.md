@@ -30,7 +30,7 @@
 
 | 层次 | 技术 | 说明 |
 |------|------|------|
-| 语言 | **Python 3.9+** | 数据与 AI 生态成熟，MVP 快速迭代 |
+| 语言 | **Python 3.12**（[mise](https://mise.jdx.dev/) 管理） | 数据与 AI 生态成熟，版本可复现 |
 | API | **FastAPI** | 异步友好、自动 OpenAPI 文档 |
 | 本地 LLM | **Ollama** | Qwen / Llama 等，零云依赖 |
 | 向量库 | **Qdrant** | MVP 首选；后续可抽象接口换 Milvus |
@@ -127,6 +127,7 @@ mini-data-ai-platform/
 ├── frontend/            # Web UI（占位）
 ├── tests/
 ├── config.py            # 统一配置（pydantic-settings）
+├── mise.toml            # Python 版本（mise）
 ├── docker-compose.yml   # Qdrant + Ollama
 ├── requirements.txt
 ├── Makefile
@@ -273,6 +274,25 @@ AskResponse: { answer: str, sources: [{ title, url, score }] }
 
 ## 6. 基础设施与配置
 
+### 6.0 Python 环境（mise）
+
+| 层次 | 工具 | 说明 |
+|------|------|------|
+| Python 版本 | **mise** | `mise.toml` 锁定 `python = "3.12"`，进目录自动切换 |
+| 依赖隔离 | **venv** | `.venv/` 存放项目 pip 包，不污染系统 |
+| 服务依赖 | **Docker Compose** | Qdrant、Ollama 容器化运行 |
+
+```bash
+# 首次：确保 shell 已激活 mise（~/.zshrc）
+eval "$(mise activate zsh)"
+
+# 安装 Python + 创建 venv + 安装依赖
+make install
+mise exec -- python --version   # 应显示 3.12.x
+```
+
+**原则：** mise 管「用哪个 Python」；venv 管「这个项目装哪些包」；`.env` 管「连哪些服务」。
+
 ### 6.1 Docker Compose 服务（MVP）
 
 | 服务 | 端口 | 用途 |
@@ -294,7 +314,7 @@ AskResponse: { answer: str, sources: [{ title, url, score }] }
 ### 6.3 本地开发命令
 
 ```bash
-make install    # 创建 venv、安装依赖
+make install    # mise install + 创建 venv + pip 安装依赖
 make up         # 启动 Qdrant + Ollama
 make dev        # 启动 FastAPI（热重载）
 make ingest     # 采集并写入向量库
