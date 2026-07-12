@@ -307,7 +307,7 @@ mise exec -- python --version   # 应显示 3.12.x
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
 | `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama API |
-| `OLLAMA_MODEL` | `qwen2.5:3b` | 生成模型 |
+| `OLLAMA_MODEL` | `qwen2.5:0.5b` | 生成模型 |
 | `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | Embedding 模型 |
 | `QDRANT_HOST` | `localhost` | 向量库地址 |
 | `QDRANT_PORT` | `6333` | |

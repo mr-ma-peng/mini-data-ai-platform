@@ -1,0 +1,29 @@
+---
+description: Python / FastAPI 编码规范
+globs: "**/*.py"
+alwaysApply: false
+---
+
+# Python 编码规范
+
+## 风格
+
+- Python 3.12，类型注解优先
+- 公共函数写 docstring；模块内私有逻辑自解释即可
+- 用 `httpx` 做 HTTP 客户端，不用 `requests`
+
+## FastAPI
+
+- 请求/响应模型用 Pydantic `BaseModel`，定义在路由文件或独立 `schemas.py`
+- 路由保持薄：业务逻辑放模块函数，不在 `main.py` 堆逻辑
+- 新增端点必须加对应 pytest（`TestClient`）
+
+## 测试
+
+- 测试文件 `tests/test_*.py`，不依赖 Docker / Ollama 的外部集成测试用 `@pytest.mark.integration` 标记（待引入）
+- 默认 `make test` 应能在无 Ollama 环境下通过
+
+## 依赖
+
+- 新包装入 `requirements.txt`，不 pin 过死版本除非有兼容问题
+- 安装与运行统一 `mise exec --`，不用裸 `python` / `pip`

@@ -1,0 +1,36 @@
+---
+description: 项目阶段、架构约束与文档索引
+alwaysApply: true
+---
+
+# Mini Data & AI Platform — 核心约束
+
+读 [AGENTS.md](../../AGENTS.md) 建立心智模型；详细设计见 [docs/design.md](../../docs/design.md)。
+
+## 当前阶段：Phase 1 MVP
+
+聚焦 RAG 闭环：采集 → embedding → Qdrant → `/ask` 问答 + sources。
+
+**不要**提前引入 Kafka、ClickHouse、Airflow 等 Phase 2+ 组件。
+
+## 模块边界
+
+| 模块 | 职责 | 可依赖 |
+|------|------|--------|
+| `collector` | 拉取原始内容 | 标准库 + httpx |
+| `embedding` | 切块、向量化、入库 | collector, config |
+| `api` | HTTP 接口 | config；RAG 逻辑后续抽到 `llm/` |
+| `scripts` | CLI 编排 | collector, embedding |
+
+数据流单向：`collector → embedding → Qdrant → api`，禁止反向或跨层直连。
+
+## 配置
+
+- 所有运行时参数走 `config.py` 的 `settings`
+- 新增环境变量同步更新 `.env.example`
+
+## 交付习惯
+
+- 改 API 行为 → 同步更新 `tests/`
+- 改架构或阶段 → 同步更新 `docs/design.md` 对应章节
+- 最小 diff，不重构无关代码

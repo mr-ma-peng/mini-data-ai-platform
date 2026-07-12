@@ -62,7 +62,7 @@ make up
 拉取所需模型：
 
 ```bash
-docker compose exec ollama ollama pull qwen2.5:3b
+docker compose exec ollama ollama pull qwen2.5:0.5b
 docker compose exec ollama ollama pull nomic-embed-text
 ```
 
@@ -98,6 +98,17 @@ make test
 | Phase 5 CI/CD | GitHub Actions | 待开始 |
 
 详见 [docs/design.md](./docs/design.md)。
+
+## Cursor Agent 配置（真实案例）
+
+本仓库包含可 fork 的 Agent 配置层示例，对应 **AGENTS.md + Rule / Command / Skill + Subagent + Hooks** 全家桶：
+
+| 文档 | 说明 |
+|------|------|
+| [AGENTS.md](./AGENTS.md) | 项目说明书（地图 + 红线） |
+| [docs/agent-config.md](./docs/agent-config.md) | 配置层导览、目录树、复制指南 |
+
+用 Cursor 打开本项目即可体验；Commands 输入 `/test`、`/phase-check`、`/ingest` 试用起手式。
 
 ## License
 

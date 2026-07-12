@@ -24,3 +24,6 @@ htmlcov/
 data/raw/
 data/processed/
 *.db
+
+# Agent hook audit logs
+logs/
